@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
+import { MyContext } from '../context'
 import BusinessCard from './BusinessCard'
 import {
   SimpleGrid
@@ -7,12 +8,11 @@ import {
 
 
 function BusinessList(){
+  const context = useContext(MyContext)
+  const { businesses } = context.state
 return(
     <SimpleGrid minChildWidth="250px" spacing={8}>
-  < BusinessCard  />
-  < BusinessCard  />
-  < BusinessCard  />
-  < BusinessCard  />
+ {businesses.map(business => <BusinessCard business={business}/>)}
 </SimpleGrid>
 )
 }

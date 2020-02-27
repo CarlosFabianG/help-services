@@ -15,6 +15,18 @@ class MyProvider extends Component {
       email: '',
       password: ''
     },
+    business:  {
+      imageUrl: 'https://elmejorplomero.com/imagenes/fontaneros.jpg',
+      name: 'Arturo Araujo',
+      address: 'Xochimilco 102',
+      city: 'Ciudad de México',
+      state: 'CMDX',
+      zipCode: '10101',
+      category: 'Plomero',
+      rating: 4.5,
+      reviewCount: 90
+    },
+    businesses: ['business, business, business, business, business, business'],
     loggedUser: null,
     isLogged: false
   }

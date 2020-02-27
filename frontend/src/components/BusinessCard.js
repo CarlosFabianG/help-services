@@ -1,25 +1,17 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
+import { MyContext } from '../context'
 import { Box, Image, Badge, StarIcon } from "@chakra-ui/core";
 
 
 
 function BusinessCard () {
+  const context = useContext(MyContext)
+  const { business } = context.state
 
-  const property = {
-  imageUrl: 'https://elmejorplomero.com/imagenes/fontaneros.jpg',
-  name: 'Arturo Araujo',
-  address: 'Xochimilco 102',
-  city: 'Ciudad de México',
-  state: 'CMDX',
-  zipCode: '10101',
-  category: 'Plomero',
-  rating: 4.5,
-  reviewCount: 90
-}
     return(
       
       <Box backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
-      <Image src={property.imageUrl} />
+      <Image src={business.imageUrl} />
 
       <Box p="6" color="whity.500">
         <Box d="flex" alignItems="baseline" color="whity.500">
@@ -45,18 +37,18 @@ function BusinessCard () {
           lineHeight="tight"
           isTruncated
         >
-          {property.name}
+          {business.name}
         
 
         <Box color="gray.500">
-          {property.address}
+          {business.address}
           </Box>
           <Box as="span" color="gray.600" fontSize="sm" color="whity.500">
             / wk
           </Box>
         </Box>
           <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {property.reviewCount} reviews
+            {business.reviewCount} reviews
           </Box>
         </Box>
       

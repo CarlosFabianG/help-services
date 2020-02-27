@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { MyContext } from '../../context'
 import SearchBar from '../../components/SearchBar'
 import BusinessList from '../../components/BusinessList'
 import {
@@ -12,8 +13,8 @@ import {
 } from '@chakra-ui/core'
 //import { MyContext } from '../../context'
 function Home({ history }) {
-  //const context = useContext(MyContext)
-  //const { feed } = context.state
+  const context = useContext(MyContext)
+  const { businesses } = context.state
   return (
     <Stack
       mt="10vh"
@@ -31,7 +32,7 @@ function Home({ history }) {
         </Box>
       </Heading>
       < SearchBar />
-      < BusinessList />
+      < BusinessList businesses={businesses}/>
     </Stack>
   )
 }
