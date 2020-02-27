@@ -1,7 +1,7 @@
 import React, { createContext, Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import AUTH_SERVICE from './services/auth'
-import axios from 'axios'
+//import axios from 'axios'
 export const MyContext = createContext()
 
 class MyProvider extends Component {
