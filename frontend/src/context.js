@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import AUTH_SERVICE from './services/auth'
 import axios from 'axios'
 export const MyContext = createContext()
-
+const api_key = 'DrcSCtjf4UWodf1lxDoID7v21R3ElIbbXhIpBG2iCxXjgIpi-ujG4J7gwrNjeQNYwizW0VRhlSD9YgHb1uacJd7m1JHE2uZpc6nR-l6IeJqMBKPvRs3g69XgVfPOXXYx'
 class MyProvider extends Component {
   state = {
     formSignup: {
@@ -16,34 +16,31 @@ class MyProvider extends Component {
       password: ''
     },
     business:  {
-      imageUrl: 'https://elmejorplomero.com/imagenes/fontaneros.jpg',
-      name: 'Arturo Araujo',
-      address: 'Xochimilco 102',
-      city: 'Ciudad de México',
-      state: 'CMDX',
-      zipCode: '10101',
-      category: 'Plomero',
-      rating: 4.5,
-      reviewCount: 90
+      imageUrl: '',
+      name: '',
+      address: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      category: '',
+      rating:'',
+      reviewCount:''
     },
     searchbar:{
       term: '',
       location: '',
       sortBy: ''
     },
-    businesses: ['business, business, business, business, business, business'],
+    businesses: [],
     loggedUser: null,
     isLogged: false
   }
-
-
-async componentDidMount(){
-  const Yelp = {
-    search(term,location){
-      return axios(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}`,{headers:{Authorization:`Bearer ${process.env.API_KEY}`}})
-      .then(response => { return response.json();})
-      .then(jsonResponse => {
+  Yelpsearch(term,location){
+      return axios(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}`,{headers:{Authorization:`Bearer ${api_key}`}})
+      .then(({data: jsonResponse} )=> {
         if(jsonResponse.businesses) {
+          console.log(jsonResponse);
+          
             return jsonResponse.businesses.map(business => {
                 return {
                     id: business.id,
@@ -62,28 +59,43 @@ async componentDidMount(){
         }
     })
 }
-}
+
+async componentDidMount(){
+  this.Yelpsearch()
     }
   
+searchYelp = (term,location,sortBy) => {
+      this.Yelpsearch(term,location,sortBy).then(businesses => {
+        this.setState({businesses:businesses})
+      })
+ }
 
 
-
-handleTermSearchBarInput = (e, obj) => {
-    const { term, value } = e.target
-     obj[term] = value
-     this.setState({ obj })
-   //onChange={ e => handleInput(e, 'formSignup')}
+handleSearchBarInputs = (e, obj) => {
+    const { name, value } = e.target
+    console.log('aqui');
+    
+    
+     this.setState(prev =>({
+       ...prev,
+       searchbar:{
+        ...prev.searchbar,
+        [name]: value
+       }
+     }))
+   
 
    }
 
 handleLocationSearchBarInput = (e,obj) => {
-  const { location, value } = e.target
-     obj[location] = value
+  const { name, value } = e.target
+     obj[name] = value
   this.setState({ obj })
 }
 
 handleSearchEvent = (e, obj) => {
-  e.preventDefault()
+
+  this.Yelpsearch( this.state.searchbar.term, this.state.searchbar.location)
 }
 
 
@@ -160,7 +172,9 @@ handleSearchEvent = (e, obj) => {
       handleLogout,
       handleTermSearchBarInput,
       handleLocationSearchBarInput,
-      handleSearchEvent
+      handleSearchEvent,
+      searchYelp,
+      handleSearchBarInputs
     } = this
     return (
       <MyContext.Provider
@@ -173,7 +187,9 @@ handleSearchEvent = (e, obj) => {
           handleLogout,
           handleTermSearchBarInput,
           handleLocationSearchBarInput,
-          handleSearchEvent
+          handleSearchEvent,
+          searchYelp,
+          handleSearchBarInputs
         }}
       >
         {this.props.children}

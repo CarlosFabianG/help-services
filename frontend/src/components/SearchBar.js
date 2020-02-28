@@ -11,9 +11,9 @@ function SearchBar(){
     
         return(
           <>
-  <Input placeholder="Search services" size="lg" isFullWidth='false'/>
-  <Input placeholder="Where" size="lg" isFullWidth='false'/>
-  <Button onClick={() => context.handleSearchEvent()} type='submit' >
+  <Input onChange={context.handleSearchBarInputs} value={context.state.searchbar.term} name='term' placeholder="Search services" size="lg" isFullWidth='false'/>
+  <Input onChange={context.handleSearchBarInputs} value={context.state.searchbar.location} name='location' placeholder="Where" size="lg" isFullWidth='false'/>
+  <Button onClick={() => context.handleSearchEvent()}>
       Search</Button>
          </>
         )
