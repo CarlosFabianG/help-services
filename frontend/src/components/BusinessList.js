@@ -12,7 +12,7 @@ function BusinessList(){
   const { businesses } = context.state
 return(
     <SimpleGrid minChildWidth="250px" spacing={8}>
- {businesses.map(business => <BusinessCard business={business}/>)}
+ {businesses.map(business => <BusinessCard key={business.id} business={business}/>)}
 </SimpleGrid>
 )
 }
