@@ -1,22 +1,23 @@
-import React, { Component } from 'react'
-import { Input } from "@chakra-ui/core";
+import React, { useContext } from 'react'
+import { MyContext } from '../context'
+import { Input, Link, Button } from "@chakra-ui/core";
 
 
-class SearchBar extends Component{
-    state = {
-        term: '',
-        location: '',
-        sortBy: 'best_match'
-    }
-
-    render() {
+function SearchBar(){
+//Se estan usando hooks si no funciona cambiare el component a clase
+//y usaré componentDidMount method    
+    const context = useContext(MyContext)
+    
+    
         return(
           <>
   <Input placeholder="Search services" size="lg" isFullWidth='false'/>
   <Input placeholder="Where" size="lg" isFullWidth='false'/>
+  <Button onClick={() => context.handleSearchEvent()} type='submit' >
+      Search</Button>
          </>
         )
-    }
+    
 }
 
 export default SearchBar

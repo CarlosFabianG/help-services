@@ -1,7 +1,7 @@
 import React, { createContext, Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import AUTH_SERVICE from './services/auth'
-//import axios from 'axios'
+import axios from 'axios'
 export const MyContext = createContext()
 
 class MyProvider extends Component {
@@ -26,10 +26,66 @@ class MyProvider extends Component {
       rating: 4.5,
       reviewCount: 90
     },
+    searchbar:{
+      term: '',
+      location: '',
+      sortBy: ''
+    },
     businesses: ['business, business, business, business, business, business'],
     loggedUser: null,
     isLogged: false
   }
+
+
+async componentDidMount(){
+  const Yelp = {
+    search(term,location){
+      return axios(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}`,{headers:{Authorization:`Bearer ${process.env.API_KEY}`}})
+      .then(response => { return response.json();})
+      .then(jsonResponse => {
+        if(jsonResponse.businesses) {
+            return jsonResponse.businesses.map(business => {
+                return {
+                    id: business.id,
+                    imageSrc: business.image_url,
+                    name: business.name,
+                    address: business.address1,
+                    city: business.location.city,
+                    state: business.location.state,
+                    zipCode: business.location.zip_Code,
+                    category: business.categories[0].title,
+                    rating: business.rating,
+                    reviewCount: business.review_Count
+
+                }
+            })
+        }
+    })
+}
+}
+    }
+  
+
+
+
+handleTermSearchBarInput = (e, obj) => {
+    const { term, value } = e.target
+     obj[term] = value
+     this.setState({ obj })
+   //onChange={ e => handleInput(e, 'formSignup')}
+
+   }
+
+handleLocationSearchBarInput = (e,obj) => {
+  const { location, value } = e.target
+     obj[location] = value
+  this.setState({ obj })
+}
+
+handleSearchEvent = (e, obj) => {
+  e.preventDefault()
+}
+
 
   handleLogout = async () => {
     await AUTH_SERVICE.LOGOUT()
@@ -101,7 +157,10 @@ class MyProvider extends Component {
       handleSignupSubmit,
       handleLoginInput,
       handleLoginSubmit,
-      handleLogout
+      handleLogout,
+      handleTermSearchBarInput,
+      handleLocationSearchBarInput,
+      handleSearchEvent
     } = this
     return (
       <MyContext.Provider
@@ -111,7 +170,10 @@ class MyProvider extends Component {
           handleSignupSubmit,
           handleLoginInput,
           handleLoginSubmit,
-          handleLogout
+          handleLogout,
+          handleTermSearchBarInput,
+          handleLocationSearchBarInput,
+          handleSearchEvent
         }}
       >
         {this.props.children}
