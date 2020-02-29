@@ -40,29 +40,29 @@ class MyProvider extends Component {
       .then(({data: jsonResponse} )=> {
         if(jsonResponse.businesses) {
           console.log(jsonResponse);
-          
-            return jsonResponse.businesses.map(business => {
-                return {
-                    id: business.id,
-                    imageSrc: business.image_url,
-                    name: business.name,
-                    address: business.address1,
-                    city: business.location.city,
-                    state: business.location.state,
-                    zipCode: business.location.zip_Code,
-                    category: business.categories[0].title,
-                    rating: business.rating,
-                    reviewCount: business.review_Count
+          this.setState({business: jsonResponse})
+            // return jsonResponse.businesses.map(business => {
+            //     return {
+            //         id: business.id,
+            //         imageSrc: business.image_url,
+            //         name: business.name,
+            //         address: business.address1,
+            //         city: business.location.city,
+            //         state: business.location.state,
+            //         zipCode: business.location.zip_Code,
+            //         category: business.categories[0].title,
+            //         rating: business.rating,
+            //         reviewCount: business.review_Count
 
-                }
-            })
+            //     }
+            // })
         }
     })
 }
 
-async componentDidMount(){
-  this.Yelpsearch()
-    }
+//async componentDidMount(){
+ // this.Yelpsearch()
+ //   }
   
 searchYelp = (term,location,sortBy) => {
       this.Yelpsearch(term,location,sortBy).then(businesses => {

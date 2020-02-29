@@ -9,10 +9,17 @@ import {
 
 function BusinessList(){
   const context = useContext(MyContext)
-  const { businesses } = context.state
+  
 return(
-    <SimpleGrid minChildWidth="250px" spacing={8}>
- {businesses.map(business => <BusinessCard key={business.id} business={business}/>)}
+    <SimpleGrid minChildWidth="300px" justify='center' columns={3} spacing={10}>
+      <>
+      {console.log('bus', context)
+      }
+      {context.state.business && context.state.business.businesses ? (
+        context.state.business.businesses.map(business => <BusinessCard key={business.id} business={business}/>)
+
+      ):(null)}
+      </>
 </SimpleGrid>
 )
 }
