@@ -4,14 +4,18 @@ import { Box, Image, Badge, StarIcon } from "@chakra-ui/core";
 
 
 
-function BusinessCard () {
+function BusinessCard ({ business }) {
   const context = useContext(MyContext)
-  const { business } = context.state
+  //const { business } = context.state
 
     return(
       
       <Box backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
-      <Image src={business.imageUrl} />
+      <Image src={business.image_url} 
+      size="400px"
+      objectFit="cover"
+      
+      />
 
       <Box p="6" color="whity.500">
         <Box d="flex" alignItems="baseline" color="whity.500">
@@ -41,7 +45,7 @@ function BusinessCard () {
         
 
         <Box color="gray.500">
-          {business.address}
+          {business.location.address1}
           </Box>
           <Box as="span" color="gray.600" fontSize="sm" color="whity.500">
             / wk

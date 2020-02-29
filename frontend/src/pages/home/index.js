@@ -6,11 +6,9 @@ import {
   Stack,
   Heading,
   Box
-  //Input
-  //Button,
-  //Text,
-  //SimpleGrid
 } from '@chakra-ui/core'
+
+
 //import { MyContext } from '../../context'
 function Home({ history }) {
   const context = useContext(MyContext)

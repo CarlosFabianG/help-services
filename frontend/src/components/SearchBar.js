@@ -10,10 +10,10 @@ function SearchBar(){
     
     
         return(
-          <Stack spacing={3}>
+          <Stack spacing={0}>
   <Input onChange={context.handleSearchBarInputs} value={context.state.searchbar.term} name='term' placeholder="Search services" size="lg" isFullWidth='false'/>
-  <Input onChange={context.handleSearchBarInputs} value={context.state.searchbar.location} name='location' placeholder="Where" size="lg" isFullWidth='false'/>
-  <Button onClick={() => context.handleSearchEvent()}>
+  <Input  onChange={context.handleSearchBarInputs} value={context.state.searchbar.location} name='location' placeholder="Where" size="lg" isFullWidth='false'/>
+  <Button mt='5vh' onClick={() => context.handleSearchEvent()}>
       Search</Button>
          </Stack>
         )

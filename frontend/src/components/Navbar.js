@@ -29,7 +29,7 @@ function Navbar({ history }) {
             justify="space-between"
           >
             <Text fontSize="xl" fontWeight="bolder" onClick={() => go('/')}>
-              Proyecto Final
+              Help Services
             </Text>
             <Menu>
               <MenuButton

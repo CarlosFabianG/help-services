@@ -11,12 +11,12 @@ function BusinessList(){
   const context = useContext(MyContext)
   
 return(
-    <SimpleGrid minChildWidth="300px" justify='center' columns={3} spacing={10}>
+    <SimpleGrid mt='10vh' minChildWidth="300px" justify='center' columns={3} spacing={10}>
       <>
       {console.log('bus', context)
       }
       {context.state.business && context.state.business.businesses ? (
-        context.state.business.businesses.map(business => <BusinessCard key={business.id} business={business}/>)
+        context.state.business.businesses.map(business => <BusinessCard key={business.id} address1={business.location.address1} image={business.image_url} business={business}/>)
 
       ):(null)}
       </>
