@@ -33,7 +33,7 @@ export default function Login({ history }) {
         return (
           <Flex
             mt="10vh"
-            backgroundColor="softpink.100"
+            backgroundColor="whity.100"
             w="100vw"
             h="90vh"
             align="center"

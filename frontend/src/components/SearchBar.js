@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { MyContext } from '../context'
-import { Stack, Input, Link, Button } from "@chakra-ui/core";
+import { Stack, Input, Link, IconButton, Flex } from "@chakra-ui/core";
 
 
 function SearchBar(){
@@ -10,12 +10,16 @@ function SearchBar(){
     
     
         return(
-          <Stack spacing={0}>
-  <Input onChange={context.handleSearchBarInputs} value={context.state.searchbar.term} name='term' placeholder="Search services" size="lg" isFullWidth='false'/>
-  <Input  onChange={context.handleSearchBarInputs} value={context.state.searchbar.location} name='location' placeholder="Where" size="lg" isFullWidth='false'/>
-  <Button mt='5vh' onClick={() => context.handleSearchEvent()}>
-      Search</Button>
-         </Stack>
+            <Stack pt="20vh" pl="5px">
+          <Flex spacing={0} pl="3vw">
+  <Input onChange={context.handleSearchBarInputs} value={context.state.searchbar.term} name='term' placeholder="Search services" size="lg" w="550px" isFullWidth='false'/>
+  <Input  onChange={context.handleSearchBarInputs} value={context.state.searchbar.location} name='location' placeholder="Where" size="lg" w="550px" isFullWidth='false'/>
+  </Flex>
+  <Flex justify="center">
+  <IconButton icon="search" justify="center" mt='5vh'  w="300px" onClick={() => context.handleSearchEvent()}>
+      Search</IconButton>
+      </Flex>
+        </Stack>
         )
     
 }

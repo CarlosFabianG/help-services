@@ -10,11 +10,12 @@ function BusinessCard ({ business }) {
 
     return(
       
-      <Box backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+      <Box  p="15px" boxShadow="lg" backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
       <Image src={business.image_url} 
-      size="400px"
+      size="330px"
       objectFit="cover"
-      
+      rounded="md"
+      m='2px'
       />
 
       <Box p="6" color="whity.500">
@@ -28,7 +29,7 @@ function BusinessCard ({ business }) {
             letterSpacing="wide"
             fontSize="xs"
             textTransform="uppercase"
-            ml="2"
+            ml="3"
           >
           </Box>
         </Box>

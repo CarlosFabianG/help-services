@@ -11,7 +11,7 @@ function BusinessList(){
   const context = useContext(MyContext)
   
 return(
-    <SimpleGrid mt='10vh' minChildWidth="300px" justify='center' columns={3} spacing={10}>
+    <SimpleGrid m="10px" mt='10vh' minChildWidth="300px" justify='center' columns={3} spacing={10}>
       <>
       {console.log('bus', context)
       }

@@ -8,7 +8,7 @@ export default function CardProfile({ user, history }) {
       borderWidth="1px"
       w="350px"
       mt="10vh"
-      backgroundColor="softpink.100"
+      backgroundColor="whity.100"
       bor
     >
       <Stack spacing={3}>

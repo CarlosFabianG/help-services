@@ -7,7 +7,8 @@ import {
   MenuList,
   MenuItem,
   Text,
-  IconButton
+  IconButton,
+  Image
 } from '@chakra-ui/core'
 import { MyContext } from '../context'
 
@@ -27,9 +28,13 @@ function Navbar({ history }) {
             p={8}
             align="center"
             justify="space-between"
+            border="1px"
+            border="1px" 
+            borderRadius="md" 
+            borderColor="gray.200"
           >
             <Text fontSize="xl" fontWeight="bolder" onClick={() => go('/')}>
-              Help Services
+              Help
             </Text>
             <Menu>
               <MenuButton
