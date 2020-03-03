@@ -25,7 +25,7 @@ function Navbar({ history }) {
             backgroundColor="white"
             w="100vw"
             h="10vh"
-            p={8}
+            p={0}
             align="center"
             justify="space-between"
             border="1px"
@@ -33,8 +33,8 @@ function Navbar({ history }) {
             borderRadius="md" 
             borderColor="gray.200"
           >
-            <Text fontSize="xl" fontWeight="bolder" onClick={() => go('/')}>
-              Help
+            <Text fontSize="xl" w={"12vw", "5vw", "8vw"} ml="1vw" fontWeight="bolder" onClick={() => go('/')}>
+              <img src="../logo_help.png"/>
             </Text>
             <Menu>
               <MenuButton

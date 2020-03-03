@@ -64,6 +64,17 @@ class MyProvider extends Component {
  // this.Yelpsearch()
  //   }
   
+ uploadPhoto = e => {
+   const formPhoto = new FormData()
+   formPhoto.append('photoUrl', e.target.files[0])
+   AUTH_SERVICE.uploadPhoto(formPhoto)
+   .then(({data}) => {
+     this.setState({ loggedUser: data.user})
+   })
+   .catch(err => {
+     return err
+   })
+ }
 searchYelp = (term,location,sortBy) => {
       this.Yelpsearch(term,location,sortBy).then(businesses => {
         this.setState({businesses:businesses})
@@ -73,8 +84,6 @@ searchYelp = (term,location,sortBy) => {
 
 handleSearchBarInputs = (e, obj) => {
     const { name, value } = e.target
-    console.log('aqui');
-    
     
      this.setState(prev =>({
        ...prev,
@@ -97,7 +106,6 @@ handleSearchEvent = (e, obj) => {
 
   this.Yelpsearch( this.state.searchbar.term, this.state.searchbar.location)
 }
-
 
   handleLogout = async () => {
     await AUTH_SERVICE.LOGOUT()
@@ -174,7 +182,8 @@ handleSearchEvent = (e, obj) => {
       handleLocationSearchBarInput,
       handleSearchEvent,
       searchYelp,
-      handleSearchBarInputs
+      handleSearchBarInputs,
+      uploadPhoto
     } = this
     return (
       <MyContext.Provider
@@ -189,7 +198,8 @@ handleSearchEvent = (e, obj) => {
           handleLocationSearchBarInput,
           handleSearchEvent,
           searchYelp,
-          handleSearchBarInputs
+          handleSearchBarInputs,
+          uploadPhoto
         }}
       >
         {this.props.children}

@@ -16,22 +16,19 @@ function Home({ history }) {
   const context = useContext(MyContext)
   const { businesses } = context.state
   return (
+   
     <Stack
       mt="10vh"
       minH="90vh"
       backgroundColor="whity"
       textAlign="center"
       w="100vw"
-      spacing={8}
+      spacing={8} 
     >
-      <Heading as="h1" size="2xl" color="#1e1e1e">
+      <Heading as="h1" size="2xl" color="gray.500">
         Help Services
-        <Box as="span" color="#ff3465">
-          H
-        </Box>
-        <Image src="../public/help_services_logo.png" />
       </Heading>
-      < SearchBar />
+      < SearchBar />  
       < BusinessList businesses={businesses}/>
     </Stack>
   )

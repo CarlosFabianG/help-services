@@ -21,6 +21,9 @@ const AUTH_SERVICE = {
   LOGOUT: async () => {
     const { data } = await service.get('/logout')
     return data
+  },
+  uploadPhoto: async photo => {
+    return await service.post('upload', photo)
   }
 }
 export default AUTH_SERVICE

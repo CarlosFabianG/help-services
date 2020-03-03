@@ -12,7 +12,7 @@ cloudinary.config({
 // Configuramos como se van a almacenar las imagenes en cloudinary
 const storage = cloudinaryStorage({
   cloudinary,
-  folder: 'lastday',
+  folder: 'Help Services',
   allowedFormats: ['jpg', 'png'],
   filename: (req, file, cb) => {
     cb(null, file.originalname)

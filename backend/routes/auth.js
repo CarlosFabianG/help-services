@@ -33,12 +33,12 @@ router.get('/profile', isAuth, (req, res, next) => {
 router.post(
   '/upload',
   isAuth,
-  uploadCloud.single('imageURL'),
+  uploadCloud.single('photoUrl'),
   async (req, res, next) => {
     const { secure_url } = req.file
     const user = await User.findByIdAndUpdate(
       req.user._id,
-      { photoURL: secure_url },
+      { photoUrl: secure_url },
       { new: true }
     )
     res.status(200).json({ user })

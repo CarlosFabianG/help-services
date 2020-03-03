@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { MyContext } from '../context'
-import { Box, Image, Badge, StarIcon } from "@chakra-ui/core";
+import { Box, Image, Badge, StarIcon, Link} from "@chakra-ui/core";
+
 
 
 
