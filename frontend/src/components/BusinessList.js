@@ -17,7 +17,7 @@ return(
       {console.log('bus', context)
       }
       {context.state.business && context.state.business.businesses ? (
-        context.state.business.businesses.map((business,index) => < Link  key={index} to={`/bussinesslist/${business.id}`}><BusinessCard key={business.id} address1={business.location.address1} image={business.image_url} business={business}/></Link>)
+        context.state.business.businesses.map((business,index) => < Link  key={index} href={`/${business.id}`}><BusinessCard key={business.id} address1={business.location.address1} image={business.image_url} business={business}/></Link>)
 
       ):(null)}
       </>

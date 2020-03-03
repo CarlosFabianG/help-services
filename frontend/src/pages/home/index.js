@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { MyContext } from '../../context'
 import SearchBar from '../../components/SearchBar'
 import BusinessList from '../../components/BusinessList'
-import Footer from '../../components/Footer'
+
 import {
   Stack,
   Heading,

@@ -19,7 +19,7 @@ export default () => (
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} /> 
-      <Route exact path="/businesslist/:id" component={BusinessDetail} /> 
+      <Route exact path="/:id" component={BusinessDetail} /> 
       <Route exact path="/config" component={ProfileConfig} /> 
 
       <Route component={NotFound} />    
