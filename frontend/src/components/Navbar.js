@@ -17,7 +17,7 @@ function Navbar({ history }) {
   return (
     <MyContext.Consumer>
       {context => {
-        
+        const { isLogged } = context.state
         return (
           <Flex
             pos="fixed"
@@ -56,7 +56,7 @@ function Navbar({ history }) {
                 )}
                 {context.state.isLogged && (
                   <>
-                     <Avatar name="Carlos Fabián" ml="7px" src="https://bit.ly/dan-abramov" />
+                     <Avatar name="Carlos Fabián" ml="8px" src={context.state.loggedUser.photoUrl} />
                     <MenuItem onClick={() => go('/')}>Home</MenuItem>
                     <MenuItem onClick={() => go('/profile')}>Profile</MenuItem>
                     <MenuItem onClick={context.handleLogout}>Logout</MenuItem>
