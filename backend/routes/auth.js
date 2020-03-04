@@ -57,7 +57,7 @@ async (req, res) => {
 }
 )
 
-router.post('/create', isAuth, uploadCloud.single('imageURL'),async (req, res) => {
+router.post('/profile/create', isAuth, uploadCloud.single('imageURL'),async (req, res) => {
   const { name,description, address, phone } = req.body
   const { secure_url: imageURL} = req.file
   const { _id } = req.user
@@ -103,7 +103,7 @@ router.get('/businesses', async (req, res, next) => {
     .sort({ createdAt: -1 })
   res.status(200).json({ businesses })
 })
-//Delete pero tu investgale
+
 router.get('/businesses/:id', async (req, res, next) => {
   const {id} = req.params;
   const business = await Business.findById(id)

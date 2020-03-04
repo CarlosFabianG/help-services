@@ -21,7 +21,7 @@ function SearchBar(){
   <Input  onChange={context.handleSearchBarInputs} value={context.state.searchbar.location} name='location' placeholder="Where" size="lg" w="550px" isFullWidth='false'/>
   </Flex>
   <Flex justify="center">
-  <Button icon="search" bg="hotpurple.500" color="whity.100" justify="center" mt='5vh'  w="300px" onClick={() => context.handleSearchEvent()}>
+  <Button icon="search" bg="navyblue.500" color="whity.100" justify="center" mt='5vh'  w="300px" onClick={() => context.handleSearchEvent()}>
       Search</Button>
       </Flex>
         </Stack>

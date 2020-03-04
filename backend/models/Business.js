@@ -4,9 +4,9 @@ const businessSchema = new Schema(
     {
     name: String,
     imageURL: String,
-    description: String,
     address: String,
     phone: String,
+    category: String,
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

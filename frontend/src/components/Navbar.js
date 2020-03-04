@@ -56,7 +56,10 @@ function Navbar({ history }) {
                 )}
                 {context.state.isLogged && (
                   <>
-                     <Avatar name="Carlos Fabián" ml="8px" src={context.state.loggedUser.photoUrl} />
+                  <Flex>
+                    <Avatar name="avatar" ml="8px" src={context.state.loggedUser.photoUrl} />
+                    <Text fontWeight="bolder" mt="10px" ml="8px">Hola {context.state.loggedUser.name}!</Text>
+                    </Flex>
                     <MenuItem onClick={() => go('/')}>Home</MenuItem>
                     <MenuItem onClick={() => go('/profile')}>Profile</MenuItem>
                     <MenuItem onClick={context.handleLogout}>Logout</MenuItem>

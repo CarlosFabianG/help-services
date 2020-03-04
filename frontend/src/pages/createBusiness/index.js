@@ -14,8 +14,9 @@ export default function CreateBusiness({ history }) {
   const toast = useToast()
   const context = useContext(MyContext)
   const submit = e => {
+    e.preventDefault()
     context
-      .handleSignupSubmit(e)
+      .handleCreateBusinessSubmit(e)
       .then(response => {
         toast({
           title: 'Registro createdo.',
@@ -24,12 +25,12 @@ export default function CreateBusiness({ history }) {
           duration: 9000,
           isClosable: true
         })
-        history.push('/create')
+        history.push('/profile/myBusiness')
       })
       .catch(err => {
         toast({
           title: 'Algo salio muy mal',
-          description: 'No se pudo crear tu cuenta',
+          description: 'No se pudo crear tu registro',
           status: 'error',
           duration: 9000,
           isClosable: true
@@ -48,7 +49,7 @@ export default function CreateBusiness({ history }) {
             align="center"
             justify="center"
           >
-            <Form submit={submit} bgColor="white" title="Create Business">
+            <Form submit={submit} bgColor="white" title="Crear Registro">
               <FormControl isRequired>
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="user" />} />
@@ -56,8 +57,8 @@ export default function CreateBusiness({ history }) {
                     placeholder="Name"
                     name="name"
                     type="text"
-                    value={context.state.formSignup.name}
-                    onChange={context.handleCreateBusinessSubmit}
+                    defaultValue={context.state.formBusiness.name}
+                    onChange={context.handleCreateBusiness}
                   />
                 </InputGroup>
               </FormControl>
@@ -65,11 +66,11 @@ export default function CreateBusiness({ history }) {
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="user" />} />
                   <Input
-                    placeholder="Name"
-                    name="name"
-                    type="text"
-                    value={context.state.formSignup.imageURL}
-                    onChange={context.handleCreateBusinessSubmit}
+                    placeholder="foto"
+                    name="imageURL"
+                    type="file"
+                    defaultValue={context.state.formBusiness.imageURL}
+                    onChange={context.handleCreateBusiness}
                   />
                 </InputGroup>
               </FormControl>
@@ -77,11 +78,23 @@ export default function CreateBusiness({ history }) {
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="email" />} />
                   <Input
-                    onChange={context.handleCreateBusinessSubmit}
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={context.state.formSignup.description}
+                    onChange={context.handleCreateBusiness}
+                    placeholder="address"
+                    name="address"
+                    type="text"
+                    defaultValue={context.state.formBusiness.description}
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <InputGroup>
+                  <InputLeftAddon children={<Icon name="phone" />} />
+                  <Input
+                    placeholder="Nº teléfono"
+                    name="phone"
+                    type="text"
+                    defaultValue={context.state.formBusiness.phone}
+                    onChange={context.handleCreateBusiness}
                   />
                 </InputGroup>
               </FormControl>
@@ -89,35 +102,11 @@ export default function CreateBusiness({ history }) {
                 <InputGroup>
                   <InputLeftAddon children={<Icon name="user" />} />
                   <Input
-                    placeholder="Name"
-                    name="name"
+                    placeholder="Categoría"
+                    name="category"
                     type="text"
-                    value={context.state.formSignup.address}
-                    onChange={context.handleCreateBusinessSubmit}
-                  />
-                </InputGroup>
-              </FormControl>
-              <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="user" />} />
-                  <Input
-                    placeholder="Name"
-                    name="name"
-                    type="text"
-                    value={context.state.formSignup.phone}
-                    onChange={context.handleSignupInput}
-                  />
-                </InputGroup>
-              </FormControl>
-              <FormControl isRequired>
-                <InputGroup>
-                  <InputLeftAddon children={<Icon name="lock" />} />
-                  <Input
-                    onChange={context.handleSignupInput}
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={context.state.formSignup.password}
+                    defaultValue={context.state.formBusiness.category}
+                    onChange={context.handleCreateBusiness}
                   />
                 </InputGroup>
               </FormControl>

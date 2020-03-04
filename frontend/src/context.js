@@ -27,6 +27,13 @@ class MyProvider extends Component {
       rating:'',
       reviewCount:''
     },
+    formBusiness: {
+      name: '',
+      imageURL: '',
+      category: '',
+      address:'',
+      phone: ''
+    },
     searchbar:{
       term: '',
       location: '',
@@ -77,13 +84,25 @@ class MyProvider extends Component {
    })
  }
 
+ uploadImage = e => {
+  const formImage = new FormData()
+  formImage.append('imageURL', e.target.files[0])
+  AUTH_SERVICE.uploadImage(formImage)
+    .then(({ data }) => {
+      this.setState({ business: data.business })
+    })
+    .catch(err => {
+      return err
+    })
+}
+
  handleCreateBusiness = e => {
    let {name, value, type, files} = e.target
    value= (type === 'file') ? files[0]: value
-   this.setState(prevState => ({
-     ...prevState,
+   this.setState(prevstate => ({
+     ...prevstate,
      formBusiness: {
-       ...prevState.formBusiness,
+       ...prevstate.formBusiness,
        [name]: value
      }
    }))
@@ -92,17 +111,17 @@ class MyProvider extends Component {
  handleCreateBusinessSubmit = async e => {
    e.preventDefault()
    const formData = new FormData()
-   formData.append('imageURL', this.state.formPublicar.imageURL)
-    formData.append('type', this.state.formPublicar.name)
-    formData.append('description', this.state.formPublicar.description)
-    formData.append('address', this.state.formPublicar.direction)
-    formData.append('phone', this.state.formPublicar.price)
+   formData.append('name', this.state.formBusiness.name)
+   formData.append('imageURL', this.state.formBusiness.imageURL)
+    formData.append('category', this.state.formBusiness.category)
+    formData.append('address', this.state.formBusiness.address)
+    formData.append('phone', this.state.formBusiness.phone)
     await AUTH_SERVICE.CREATE(formData)
     return this.setState({ 
       formBusiness: {
         imageURL: '',
         name: '',
-        description: '',
+        category: '',
         address: '',
         phone: ''
     }})
@@ -143,43 +162,28 @@ handleSearchEvent = (e, obj) => {
     this.props.history.push('/')
     this.setState({ loggedUser: null, isLogged: false })
   }
-  //Esta función destructura de el estado la form para poder acceder a
-  //a sus key value pairs.
-  //Destructuramos la key y su valor de element y con . target lo 
-  //obtenemos.
-  //A formSignUp en su llave name le damos el valor que pasa en value del
-  //e.target
-  //Se actualiza el estado al final.
+  
   handleSignupInput = e => {
     const { formSignup } = this.state
     const { name, value } = e.target
     formSignup[name] = value
     this.setState({ formSignup })
   }
-  //Esta función destructura de el estado la form para poder acceder a
-  //a sus key value pairs.
-  //Destructuramos la key y su valor de element y con . target lo 
-  //obtenemos.
-  //A formLogin en su llave name le damos el valor que pasa en value del
-  //e.target
-  //Se actualiza el estado al final.
+  
   handleLoginInput = e => {
     const { formLogin } = this.state
     const { name, value } = e.target
     formLogin[name] = value
     this.setState({ formLogin })
   }
-  //La funcion asincrona recibe un evento; lo primero que hace es evitar la recarga 
-  //de pagina con preventDefault. En seguida en una constante llamada form guardamos 
-  //el state que actualizamos en la funcion handleSignUpInput. Despues limpiamos la informacion del signup
-  //para terminar pasamos nuestra constante form a AUTH_SERVICE para mandar esa info al servidor. 
+  
   handleSignupSubmit = async e => {
     e.preventDefault()
     const form = this.state.formSignup
     this.setState({ formSignup: { name: '', email: '', password: '' } })
     return await AUTH_SERVICE.SIGNUP(form)
   }
-//
+
   handleLoginSubmit = e => {
     e.preventDefault()
     const form = this.state.formLogin
@@ -215,7 +219,8 @@ handleSearchEvent = (e, obj) => {
       searchYelp,
       handleSearchBarInputs,
       uploadPhoto,
-      handleCreateBusiness
+      handleCreateBusiness,
+      handleCreateBusinessSubmit
     } = this
     return (
       <MyContext.Provider
@@ -232,7 +237,9 @@ handleSearchEvent = (e, obj) => {
           searchYelp,
           handleSearchBarInputs,
           uploadPhoto,
-          handleCreateBusiness
+          handleCreateBusiness,
+          handleCreateBusinessSubmit
+
         }}
       >
         {this.props.children}

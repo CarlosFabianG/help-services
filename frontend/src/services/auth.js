@@ -23,7 +23,8 @@ const AUTH_SERVICE = {
     return data
   },
   CREATE: async form => {
-    const { data } = await service.post('/create', form)
+    console.log(form)
+    const { data } = await service.post('/profile/create', form)
     return data
   },
 

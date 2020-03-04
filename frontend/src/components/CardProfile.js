@@ -27,7 +27,7 @@ export default function CardProfile({ user, history }) {
         <Text fontWeight="bold">{user.email}</Text>
         </Flex>
         <Button
-          href="./config"
+          href="./profile/config"
           size="lg"
           color="white"
           variantColor="hotpurple"
@@ -36,7 +36,8 @@ export default function CardProfile({ user, history }) {
           Editar perfil
         </Button>
         <Button
-          href="./create"
+          to={'/profile/create'}
+          href="./profile/create"
           size="lg"
           color="white"
           variantColor="hotpurple"
