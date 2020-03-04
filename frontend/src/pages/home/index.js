@@ -5,9 +5,7 @@ import BusinessList from '../../components/BusinessList'
 
 import {
   Stack,
-  Heading,
-  Image,
-  Box
+  Heading
 } from '@chakra-ui/core'
 
 

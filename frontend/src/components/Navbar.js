@@ -17,7 +17,7 @@ function Navbar({ history }) {
   return (
     <MyContext.Consumer>
       {context => {
-        const { isLogged } = context.state
+        //const { isLogged } = context.state
         return (
           <Flex
             pos="fixed"
@@ -30,12 +30,11 @@ function Navbar({ history }) {
             align="center"
             justify="space-between"
             border="1px"
-            border="1px" 
             borderRadius="md" 
             borderColor="gray.200"
           >
             <Text fontSize="xl" w={"12vw", "5vw", "8vw"} ml="1vw" fontWeight="bolder" onClick={() => go('/')}>
-              <img src="../logo_help.png"/>
+              <img src="../logo_help.png" alt="brand-logo"/>
             </Text>
             <Menu>
               <MenuButton

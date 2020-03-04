@@ -1,6 +1,11 @@
-import React from 'react'
-import { Stack, Image, Text, Button, Box, Flex } from '@chakra-ui/core'
+import React, {useContext} from 'react'
+import { MyContext } from '../context'
+import { Stack, Image, Text, Button, Box, Flex, Input } from '@chakra-ui/core'
+
+
 export default function CardProfile({ user, history }) {
+  const go = path => history.push(path)
+  const context = useContext(MyContext)
   return (
     <Box
       p={5}
@@ -26,8 +31,9 @@ export default function CardProfile({ user, history }) {
         <Flex justify="center">
         <Text fontWeight="bold">{user.email}</Text>
         </Flex>
+        <Input placeholder="Cambiar imagen" type="file" name="photoUrl" onChange={context.uploadPhoto} />
         <Button
-          href="./profile/config"
+          onClick={() => go('/profile/config')}
           size="lg"
           color="white"
           variantColor="hotpurple"
@@ -36,8 +42,8 @@ export default function CardProfile({ user, history }) {
           Editar perfil
         </Button>
         <Button
-          to={'/profile/create'}
-          href="./profile/create"
+          onClick={() => go('/profile/create')}
+          //href="./profile/create"
           size="lg"
           color="white"
           variantColor="hotpurple"

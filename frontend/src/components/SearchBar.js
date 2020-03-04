@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { MyContext } from '../context'
-import { Stack, Input, Link, Button, Flex, Select } from "@chakra-ui/core";
+import { Stack, Input, Button, Flex, Select } from "@chakra-ui/core";
 
 
 function SearchBar(){

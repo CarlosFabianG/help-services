@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { MyContext } from '../context'
-import { Box, Image, Badge, StarIcon, Link} from "@chakra-ui/core";
+import { Box, Image, Badge} from "@chakra-ui/core";
 
 
 
@@ -11,7 +11,7 @@ function BusinessCard ({ business }) {
 
     return(
       
-      <Box  p="15px" boxShadow="lg" backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+      <Box p="15px" boxShadow="lg" backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
       <Image src={business.image_url} 
       size="330px"
       objectFit="cover"

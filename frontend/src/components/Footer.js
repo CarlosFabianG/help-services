@@ -16,12 +16,11 @@ function Footer() {
         align="center"
         justify="center"
         border="1px"
-        border="1px" 
         borderRadius="md" 
         borderColor="gray.200"
         >
     <Text textAlign="center" color="gray.500" fontSize="xs">
-      Made with <span role="img">🥚🥚</span> by Carlos Fabián 
+      Made with <span aria-label="emoji" role="img">🥚🥚</span> by Carlos Fabián 
     </Text>
 </Flex>
 

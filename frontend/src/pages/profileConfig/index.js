@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react'
+import CardProfile from '../../components/CardProfile'
 import { MyContext } from '../../context'
 import { 
   Flex,
@@ -17,8 +18,8 @@ export default function ProfileConfig({ history }) {
   return (
     <MyContext.Consumer>
       {context => {
-        const { isLogged } = context.state
-//        const { isLogged, loggedUser } = context.state
+        //const { isLogged } = context.state
+        const { isLogged, loggedUser } = context.state
         if (isLogged)
           return (
             <React.Fragment>
@@ -31,6 +32,7 @@ export default function ProfileConfig({ history }) {
                 mt="5vh"
                 ml="5vw"
               >
+                 <CardProfile user={loggedUser} history={history} />
                 <Box>
                   <Heading mt="5vh">Configuración:</Heading>
                   <Stack spacing={8} mt="5vh" mr="5vw" mb="3vh" ml="5vw" align="center">

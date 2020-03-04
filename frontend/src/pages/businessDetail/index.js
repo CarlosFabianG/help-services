@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { MyContext } from '../../context'
+//import { MyContext } from '../../context'
 import axios from 'axios'
-import BusinessCard from '../../components/BusinessCard'
+//import BusinessCard from '../../components/BusinessCard'
 import { Box, Image, Badge, Stack } from "@chakra-ui/core"
 const api_key = 'DrcSCtjf4UWodf1lxDoID7v21R3ElIbbXhIpBG2iCxXjgIpi-ujG4J7gwrNjeQNYwizW0VRhlSD9YgHb1uacJd7m1JHE2uZpc6nR-l6IeJqMBKPvRs3g69XgVfPOXXYx'
 
@@ -74,7 +74,7 @@ class BusinessDetail extends Component{
           <Box color="gray.500">
         {this.state.businessdetail.display_phone}
           </Box>
-          <Box as="span" color="gray.600" fontSize="sm" color="whity.500">
+          <Box as="span" color="gray.600" fontSize="sm">
             
           </Box>
         </Box>
