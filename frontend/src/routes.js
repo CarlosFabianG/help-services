@@ -9,6 +9,7 @@ import Profile from './pages/profile'
 import BusinessDetail from './pages/businessDetail'
 import NotFound from './components/404/NotFound.js'
 import ProfileConfig from './pages/profileConfig'
+import CreateBusiness from './pages/createBusiness'
 
 export default () => (
   
@@ -21,7 +22,7 @@ export default () => (
       <Route exact path="/signup" component={Signup} /> 
       <Route exact path="/:id" component={BusinessDetail} /> 
       <Route exact path="/config" component={ProfileConfig} /> 
-
+      <Route exact path="/create" component={CreateBusiness} />
       <Route component={NotFound} />    
     </Switch> 
     < Footer /> 

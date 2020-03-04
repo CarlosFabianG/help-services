@@ -8,7 +8,7 @@ import {
   MenuItem,
   Text,
   IconButton,
-  Image
+  Avatar
 } from '@chakra-ui/core'
 import { MyContext } from '../context'
 
@@ -17,6 +17,7 @@ function Navbar({ history }) {
   return (
     <MyContext.Consumer>
       {context => {
+        
         return (
           <Flex
             pos="fixed"
@@ -55,6 +56,7 @@ function Navbar({ history }) {
                 )}
                 {context.state.isLogged && (
                   <>
+                     <Avatar name="Carlos Fabián" ml="7px" src="https://bit.ly/dan-abramov" />
                     <MenuItem onClick={() => go('/')}>Home</MenuItem>
                     <MenuItem onClick={() => go('/profile')}>Profile</MenuItem>
                     <MenuItem onClick={context.handleLogout}>Logout</MenuItem>

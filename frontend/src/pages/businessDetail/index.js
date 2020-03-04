@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { MyContext } from '../../context'
 import axios from 'axios'
 import BusinessCard from '../../components/BusinessCard'
-import { Box, Image, Badge, Icon, Flex } from "@chakra-ui/core"
+import { Box, Image, Badge, Stack } from "@chakra-ui/core"
 const api_key = 'DrcSCtjf4UWodf1lxDoID7v21R3ElIbbXhIpBG2iCxXjgIpi-ujG4J7gwrNjeQNYwizW0VRhlSD9YgHb1uacJd7m1JHE2uZpc6nR-l6IeJqMBKPvRs3g69XgVfPOXXYx'
 
 
@@ -10,43 +10,93 @@ const api_key = 'DrcSCtjf4UWodf1lxDoID7v21R3ElIbbXhIpBG2iCxXjgIpi-ujG4J7gwrNjeQN
 class BusinessDetail extends Component{
 
         state = {
-            businessdetail:[]
+            businessdetail:[],
+            reviews:[]
         }
         
         async componentDidMount() {
             const { id } = this.props.match.params
             const {data} = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`,{headers:{Authorization:`Bearer ${api_key}`}})
             this.setState({businessdetail:{...data}})
-            //console.log(data)
+            const {dataReviews} = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}/reviews`,{headers:{Authorization:`Bearer ${api_key}`}})
+            this.setState({reviews:{...dataReviews}})
+            console.log(data)
+            console.log(dataReviews)
+            console.log(this.state.businessdetail.location.display_address)
         }
     
         render(){
             return(
-                <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
-                <Image src={this.state.businessdetail.image_url}  />
+                <>
+                <Box mt="15vh" p="15px" boxShadow="lg" backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+      <Image src={this.state.businessdetail.image_url}  
+      size="330px"
+      objectFit="cover"
+      rounded="md"
+      m='2px'
+      />
+
+      <Box p="6" color="whity.500">
+        <Box d="flex" alignItems="baseline" color="whity.500">
+          <Badge rounded="full" px="2" variantColor="teal">
+              Rating {this.state.businessdetail.rating} 
+          </Badge>
+          <Badge rounded="full" px="2" variantColor="green">
+            {this.state.businessdetail.review_count} reviews
+          </Badge>
           
-                <Box p="6">
-                  <Box d="flex" alignItems="baseline">
-                    <Badge rounded="full" px="2" variantColor="teal">
-                      New
-                    </Badge>
-                    
-                  </Box>
-          
-                  <Box
-                    mt="1"
-                    fontWeight="semibold"
-                    as="h4"
-                    lineHeight="tight"
-                    isTruncated
-                  >
-                    {this.state.businessdetail.name}
-                  </Box>
-                  <Box color="gray.500">
-          {this.state.businessdetail.address1}
+          <Box
+            color="whity.500"
+            fontWeight="semibold"
+            letterSpacing="wide"
+            fontSize="xs"
+            textTransform="uppercase"
+            ml="3"
+          >
           </Box>
-                </Box>
-              </Box>
+        </Box>
+
+        <Box
+         color="gray.500"
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          isTruncated
+        >
+          {this.state.businessdetail.name}
+         
+        
+
+        <Box color="gray.500">
+        {this.state.businessdetail.display_phone}
+          </Box>
+          <Box color="gray.500">
+        {this.state.businessdetail.display_phone}
+          </Box>
+          <Box as="span" color="gray.600" fontSize="sm" color="whity.500">
+            
+          </Box>
+        </Box>
+          
+        {!this.state.businessdetail.is_closed?(
+          <Badge rounded="full" px="2" variantColor="orange">
+          Open Now</Badge>): (
+          <Badge rounded="full" px="2" variantColor="red">
+          Closed Now</Badge>)}
+        </Box>
+    </Box>
+    <Stack spacing={8}>
+    
+       
+        
+    <Box
+      title="Save Money"
+      desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings on your own terms with our completely automated process"
+    >
+    </Box>
+  </Stack>
+  </>
             )
             }
 
@@ -54,3 +104,5 @@ class BusinessDetail extends Component{
 
 
 export default BusinessDetail
+
+

@@ -11,7 +11,7 @@ import Routes from './routes'
 ReactDOM.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
-      <CSSReset />
+    <CSSReset />
       <MyProvider>
         <Routes />
       </MyProvider>

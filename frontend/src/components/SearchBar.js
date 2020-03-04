@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { MyContext } from '../context'
-import { Stack, Input, Link, IconButton, Flex, Select } from "@chakra-ui/core";
+import { Stack, Input, Link, Button, Flex, Select } from "@chakra-ui/core";
 
 
 function SearchBar(){
@@ -15,14 +15,14 @@ function SearchBar(){
           <Select onChange={context.handleSearchBarInputs} value={context.state.searchbar.term} name='term' size="lg" w="550px" isFullWidth='false' placeholder="Search services">
   <option value="plomeros">Plomería</option>
   <option value="mudanzas">Mudanzas</option>
-  <option value="mecanicos">Mecanicos</option>
+  <option value="mecanicos">Mecánicos</option>
   <option value="electricos">Electricos</option>
 </Select>
   <Input  onChange={context.handleSearchBarInputs} value={context.state.searchbar.location} name='location' placeholder="Where" size="lg" w="550px" isFullWidth='false'/>
   </Flex>
   <Flex justify="center">
-  <IconButton icon="search" justify="center" mt='5vh'  w="300px" onClick={() => context.handleSearchEvent()}>
-      Search</IconButton>
+  <Button icon="search" bg="hotpurple.500" color="whity.100" justify="center" mt='5vh'  w="300px" onClick={() => context.handleSearchEvent()}>
+      Search</Button>
       </Flex>
         </Stack>
         )

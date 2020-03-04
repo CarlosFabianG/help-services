@@ -22,6 +22,11 @@ const AUTH_SERVICE = {
     const { data } = await service.get('/logout')
     return data
   },
+  CREATE: async form => {
+    const { data } = await service.post('/create', form)
+    return data
+  },
+
   uploadPhoto: async photo => {
     return await service.post('upload', photo)
   }

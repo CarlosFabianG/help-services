@@ -21,7 +21,7 @@ function Footer() {
         borderColor="gray.200"
         >
     <Text textAlign="center" color="gray.500" fontSize="xs">
-      Made with 🥚🥚 by Carlos Fabián 
+      Made with <span role="img">🥚🥚</span> by Carlos Fabián 
     </Text>
 </Flex>
 

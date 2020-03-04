@@ -25,7 +25,7 @@ function Home({ history }) {
       w="100vw"
       spacing={8} 
     >
-      <Heading as="h1" size="2xl" color="gray.500">
+      <Heading as="h1" size="2xl" color="hotpurple.900">
         Help Services
       </Heading>
       < SearchBar />  

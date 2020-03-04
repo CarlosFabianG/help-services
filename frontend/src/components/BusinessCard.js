@@ -22,8 +22,12 @@ function BusinessCard ({ business }) {
       <Box p="6" color="whity.500">
         <Box d="flex" alignItems="baseline" color="whity.500">
           <Badge rounded="full" px="2" variantColor="teal">
-            New
+            Rating {business.rating}
           </Badge>
+          <Badge rounded="full" px="2" variantColor="orange">
+            {business.review_count} reviews
+            </Badge>
+         
           <Box
             color="whity.500"
             fontWeight="semibold"
@@ -53,11 +57,13 @@ function BusinessCard ({ business }) {
             / wk
           </Box>
         </Box>
-          <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {business.reviewCount} reviews
-          </Box>
+        {!business.is_closed?(
+          <Badge rounded="full" px="2" variantColor="green">
+          Open Now</Badge>): (
+          <Badge rounded="full" px="2" variantColor="red">
+          Closed Now</Badge>)}
+          
         </Box>
-      
     </Box>
     
     )

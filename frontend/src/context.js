@@ -19,6 +19,7 @@ class MyProvider extends Component {
       imageUrl: '',
       name: '',
       address: '',
+      phone:'',
       city: '',
       state: '',
       zipCode: '',
@@ -75,6 +76,38 @@ class MyProvider extends Component {
      return err
    })
  }
+
+ handleCreateBusiness = e => {
+   let {name, value, type, files} = e.target
+   value= (type === 'file') ? files[0]: value
+   this.setState(prevState => ({
+     ...prevState,
+     formBusiness: {
+       ...prevState.formBusiness,
+       [name]: value
+     }
+   }))
+ }
+
+ handleCreateBusinessSubmit = async e => {
+   e.preventDefault()
+   const formData = new FormData()
+   formData.append('imageURL', this.state.formPublicar.imageURL)
+    formData.append('type', this.state.formPublicar.name)
+    formData.append('description', this.state.formPublicar.description)
+    formData.append('address', this.state.formPublicar.direction)
+    formData.append('phone', this.state.formPublicar.price)
+    await AUTH_SERVICE.CREATE(formData)
+    return this.setState({ 
+      formBusiness: {
+        imageURL: '',
+        name: '',
+        description: '',
+        address: '',
+        phone: ''
+    }})
+ }
+
 searchYelp = (term,location,sortBy) => {
       this.Yelpsearch(term,location,sortBy).then(businesses => {
         this.setState({businesses:businesses})
@@ -92,8 +125,6 @@ handleSearchBarInputs = (e, obj) => {
         [name]: value
        }
      }))
-   
-
    }
 
 handleLocationSearchBarInput = (e,obj) => {
@@ -183,7 +214,8 @@ handleSearchEvent = (e, obj) => {
       handleSearchEvent,
       searchYelp,
       handleSearchBarInputs,
-      uploadPhoto
+      uploadPhoto,
+      handleCreateBusiness
     } = this
     return (
       <MyContext.Provider
@@ -199,7 +231,8 @@ handleSearchEvent = (e, obj) => {
           handleSearchEvent,
           searchYelp,
           handleSearchBarInputs,
-          uploadPhoto
+          uploadPhoto,
+          handleCreateBusiness
         }}
       >
         {this.props.children}

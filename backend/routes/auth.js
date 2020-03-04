@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const Favorite= require('../models/Favorite');
+const Business= require('../models/Business');
 // Require 2do modelo
 const passport = require('../config/passport');
 const uploadCloud = require('../config/cloudinary')
@@ -44,50 +44,94 @@ router.post(
     res.status(200).json({ user })
   }
 )
-//Create Routes/auths linea 57
-router.post('/create', isAuth, async (req, res, next) => {
-  const { name, imageURL,description } = req.body
+
+//funcion para subir foto
+router.post('/uploadImage', isAuth, uploadCloud.single('imageURL'),
+async (req, res) => {
+  const { secure_url } = req.file 
+  const business = await Business.findByIdAndUpdate(
+    {imageURL: secure_url},
+    { new: true }
+  )
+  res.status(200).json({business})
+}
+)
+
+router.post('/create', isAuth, uploadCloud.single('imageURL'),async (req, res) => {
+  const { name,description, address, phone } = req.body
+  const { secure_url: imageURL} = req.file
   const { _id } = req.user
-  const card = await Card.create({ name, imageURL, description })
-  const cardPopulated = await Card.findById(card._id).populate('author')
+  const business = await Business.create({ name, imageURL, description, address, phone, author: _id })
+  const businessPopulated = await Business.findById(business._id).populate('author')
   const user = await User.findByIdAndUpdate(
     _id,
-    { $push: { cards: card._id } },
+    { $push: { business: business._id } },
     { new: true }
   ).populate({
-    path: 'card',
+    path: 'business',
     populate: {
       path: 'author',
       model: 'User'
     }
   })
-  return res.status(201).json({ user, card: cardPopulated })
+  return res.status(201).json({ user, business: businessPopulated })
 })
+
+
+//CRUD Business model
+// router.post('/create', isAuth, async (req, res, next) => {
+//   const { name, imageURL,description } = req.body
+//   const { _id } = req.user
+//   const business = await Business.create({ name, imageURL, description, address, phone })
+//   const businessPopulated = await Business.findById(business._id).populate('author')
+//   const user = await User.findByIdAndUpdate(
+//     _id,
+//     { $push: { cards: card._id } },
+//     { new: true }
+//   ).populate({
+//     path: 'card',
+//     populate: {
+//       path: 'author',
+//       model: 'Business'
+//     }
+//   })
+//   return res.status(201).json({ user, business: businessPopulated })
+// })
 //Read Routes/auths linea 76
-router.get('/cards', async (req, res, next) => {
-  const favorites = await Favorite.find()
+router.get('/businesses', async (req, res, next) => {
+  const businesses = await Business.find()
     .sort({ createdAt: -1 })
-  res.status(200).json({ favorites })
+  res.status(200).json({ businesses })
 })
 //Delete pero tu investgale
-router.get('/favorites/:id', async (req, res, next) => {
+router.get('/businesses/:id', async (req, res, next) => {
   const {id} = req.params;
-  const favorite = await Favorite.findById(id)
-  res.status(200).json(card)
+  const business = await Business.findById(id)
+  res.status(200).json(business)
 })
-router.patch('/favorites/:id', async(req, res, next) => {
+router.patch('/businesses/:id', async(req, res, next) => {
   const {id} = req.params
   const {name,description} = req.body
-  await Favorite.findByIdAndUpdate(id, {
+  await Business.findByIdAndUpdate(id, {
     name, description, 
   })
-  res.status(200).json({message: "favorite update"})
+  res.status(200).json({message: "business update"})
 })
-router.delete('/favorites/:id', async(req, res, next) => {
+router.delete('/businesses/:id', async(req, res, next) => {
   const {id} = req.params
-  await Favorite.findByIdAndDelete(id)
-  res.status(200).json({ message: "favorite delete"})
+  await Business.findByIdAndDelete(id)
+  res.status(200).json({ message: "business delete"})
 })
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
   function isAuth(req, res, next) {
     req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });

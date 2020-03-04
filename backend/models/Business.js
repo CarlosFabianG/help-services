@@ -5,8 +5,12 @@ const businessSchema = new Schema(
     name: String,
     imageURL: String,
     description: String,
-    adress: String,
-    phone: String
+    address: String,
+    phone: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
     },
     {
     timestamps: true,

@@ -27,13 +27,22 @@ export default function CardProfile({ user, history }) {
         <Text fontWeight="bold">{user.email}</Text>
         </Flex>
         <Button
-          to="./config"
+          href="./config"
           size="lg"
           color="white"
-          variantColor="hotpink"
-          backgroundColor="hotpink.500"
+          variantColor="hotpurple"
+          backgroundColor="hotpurple.500"
         >
           Editar perfil
+        </Button>
+        <Button
+          href="./create"
+          size="lg"
+          color="white"
+          variantColor="hotpurple"
+          backgroundColor="hotpurple.500"
+        >
+          Crear registro
         </Button>
       </Stack>
     </Box>
