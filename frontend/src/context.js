@@ -85,6 +85,7 @@ class MyProvider extends Component {
 
 getMyBusinesses =  async () => {
   let { businesses } = await AUTH_SERVICE.getAllMyBusiness()
+  
   this.setState(prevstate => ({
     ...prevstate,
     myBusinesses: businesses

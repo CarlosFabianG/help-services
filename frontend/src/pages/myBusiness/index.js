@@ -15,7 +15,7 @@ import {
   
 
 
-// Sample card from Airbnb
+
 
 function MyBusiness ({history}) {
   const context = useContext(MyContext)
@@ -53,9 +53,9 @@ function MyBusiness ({history}) {
             ml="5vw"
             mr="5vw"
           >
-            {context.state.businesses.map(business => 
-              business.category === "plumbing" && (
-
+            {context.state.myBusinesses.map(business => (
+              
+              <>
             <Box 
               key={business._id} 
               maxW="sm" 
@@ -113,11 +113,12 @@ function MyBusiness ({history}) {
                 <Box>
                   {business.phone}
                   <Box as="span" color="gray.600" fontSize="sm">
-                     / M.N. mensual.
+                     {business.phone}
                   </Box>
                 </Box>
               </Box>
             </Box>
+            </>
             ))}
           </SimpleGrid>
         </Flex>
