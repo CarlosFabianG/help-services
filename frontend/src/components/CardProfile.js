@@ -36,18 +36,17 @@ export default function CardProfile({ user, history }) {
           //onClick={() => go('/profile/config')}
           size="lg"
           color="white"
-          variantColor="hotpurple"
-          backgroundColor="hotpurple.500"
+          variantColor="navyblue"
+          backgroundColor="navyblue.500"
         >
           Editar perfil
         </Button>
         <Button
           onClick={() => go('/profile/create')}
-          //href="./profile/create"
           size="lg"
           color="white"
-          variantColor="hotpurple"
-          backgroundColor="hotpurple.500"
+          variantColor="navyblue"
+          backgroundColor="navyblue.500"
         >
           Crear registro
         </Button>

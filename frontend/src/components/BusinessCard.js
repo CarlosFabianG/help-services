@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { MyContext } from '../context'
+import React from 'react'
+//import { MyContext } from '../context'
 import { Box, Image, Badge, Icon} from "@chakra-ui/core";
 
 
 
 
 function BusinessCard ({ business }) {
-  const context = useContext(MyContext)
+  //const context = useContext(MyContext)
   //const { business } = context.state
 
     return(
@@ -52,9 +52,6 @@ function BusinessCard ({ business }) {
 
         <Box color="gray.500">
           {business.location.address1}
-          </Box>
-          <Box as="span" color="gray.600" fontSize="sm" color="whity.500">
-            / wk
           </Box>
         </Box>
         {!business.is_closed?(

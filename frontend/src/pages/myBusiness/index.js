@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react'
-import AUTH_SERVICE from '../../services/auth'
 import { MyContext } from '../../context'
 //import { render } from 'react-dom'
 //import BusinessCard from '../../components/BusinessCard'
@@ -39,11 +38,13 @@ function MyBusiness ({history}) {
           mr="5vw"
           backgroundColor="white"
           textAlign="center"
-          w="90vw"
+          w="150vw"
           minH="90vh"
         >
-
-        <Heading mb={1} size="sm">Mis registros</Heading>
+<Flex>
+<Heading justify="center" mb={1} size="sm"></Heading>
+</Flex>
+        
 
         <Flex>
 
@@ -58,6 +59,7 @@ function MyBusiness ({history}) {
               <>
             <Box 
               key={business._id} 
+              boxShadow="lg"
               maxW="sm" 
               borderWidth="1px" 
               rounded="lg" 
@@ -86,7 +88,7 @@ function MyBusiness ({history}) {
                     textTransform="uppercase"
                     ml="2"
                   >
-                    Hola
+                   
                   </Box>
 
                 </Box>
@@ -98,7 +100,7 @@ function MyBusiness ({history}) {
                     lineHeight="tight"
                     isTruncated
                   >
-                    Hola
+                     {business.name}
                   </Box>
 
                 <Box
@@ -111,7 +113,6 @@ function MyBusiness ({history}) {
                 </Box>
 
                 <Box>
-                  {business.phone}
                   <Box as="span" color="gray.600" fontSize="sm">
                      {business.phone}
                   </Box>
