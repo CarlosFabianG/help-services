@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //import { MyContext } from '../../context'
 import axios from 'axios'
 //import BusinessCard from '../../components/BusinessCard'
-import { Box, Image, Badge, Stack } from "@chakra-ui/core"
+import { Box, Image, Badge, Stack, Flex } from "@chakra-ui/core"
 const api_key = 'DrcSCtjf4UWodf1lxDoID7v21R3ElIbbXhIpBG2iCxXjgIpi-ujG4J7gwrNjeQNYwizW0VRhlSD9YgHb1uacJd7m1JHE2uZpc6nR-l6IeJqMBKPvRs3g69XgVfPOXXYx'
 
 
@@ -27,7 +27,8 @@ class BusinessDetail extends Component{
     
         render(){
             return(
-                <>
+                <Flex>
+                  <Flex>
                 <Box mt="15vh" p="15px" boxShadow="lg" backgroundColor='whity.500' color="whity.500" maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
       <Image src={this.state.businessdetail.image_url}  
       size="330px"
@@ -72,7 +73,7 @@ class BusinessDetail extends Component{
         {this.state.businessdetail.display_phone}
           </Box>
           <Box color="gray.500">
-        {this.state.businessdetail.display_phone}
+        {this.state.businessdetail.city}
           </Box>
           <Box as="span" color="gray.600" fontSize="sm">
             
@@ -87,16 +88,19 @@ class BusinessDetail extends Component{
         </Box>
     </Box>
     <Stack spacing={8}>
-    
-       
-        
-    <Box
-      title="Save Money"
-      desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings on your own terms with our completely automated process"
-    >
-    </Box>
   </Stack>
-  </>
+  </Flex>
+  <Flex mt="8vh">
+    <Image 
+      src="../google_map.jpg"
+      size="700px"
+      objectFit="cover"
+      rounded="md"
+      pt="50px"
+      mt="10vh"
+      m='2px'/>
+  </Flex>
+  </Flex>
             )
             }
 

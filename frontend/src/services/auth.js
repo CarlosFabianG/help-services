@@ -1,11 +1,11 @@
 import axios from 'axios';
-// let baseURL;
-// process.env.NODE_ENV === 'production'
-//   ? (baseURL = 'here should be your production endpoint')
-//   : (baseURL = 'http://localhost:3000');
+let baseURL = 'https://help-services.herokuapp.com'
+ process.env.NODE_ENV === 'production'
+   ? (baseURL = 'https://help-services.herokuapp.com')
+  : (baseURL = 'http://localhost:3000');
 
 //REVISAR MENSAJE
-const baseURL = 'http://localhost:3000'
+//const baseURL = 'http://localhost:3000'
 
 const service = axios.create({ withCredentials: true, baseURL });
 
@@ -30,6 +30,11 @@ const AUTH_SERVICE = {
 
   uploadPhoto: async photo => {
     return await service.post('upload', photo)
+  },
+
+  getAllMyBusiness: async () => {
+     const { data } = await service.get('/profile/myBusiness')
+     return data
   }
 }
 export default AUTH_SERVICE

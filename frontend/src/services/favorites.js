@@ -1,5 +1,10 @@
 import axios from "axios";
-const baseURL = "http://localhost:3000/favorites";
+
+let baseURL = 'https://help-services.herokuapp.com'
+ process.env.NODE_ENV === 'production'
+   ? (baseURL = 'https://help-services.herokuapp.com')
+  : (baseURL = 'http://localhost:3000');
+
 const favoritesService = axios.create({
     withCredentials: true, baseURL
 })

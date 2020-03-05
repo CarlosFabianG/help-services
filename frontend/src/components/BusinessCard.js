@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { MyContext } from '../context'
-import { Box, Image, Badge} from "@chakra-ui/core";
+import { Box, Image, Badge, Icon} from "@chakra-ui/core";
 
 
 
@@ -24,8 +24,8 @@ function BusinessCard ({ business }) {
           <Badge rounded="full" px="2" variantColor="teal">
             Rating {business.rating}
           </Badge>
-          <Badge rounded="full" px="2" variantColor="orange">
-            {business.review_count} reviews
+          <Badge rounded="full" px="2" variantColor="yellow">
+          <Icon name="star" />{business.review_count} reviews
             </Badge>
          
           <Box

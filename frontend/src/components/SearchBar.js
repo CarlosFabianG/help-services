@@ -13,7 +13,7 @@ function SearchBar(){
             <Stack pt="20vh" pl="5px">
           <Flex spacing={0} pl="3vw">
           <Select onChange={context.handleSearchBarInputs} value={context.state.searchbar.term} name='term' size="lg" w="550px" isFullWidth='false' placeholder="Search services">
-  <option value="plomeros">Plomería</option>
+  <option value="plumbing">Plomería</option>
   <option value="mudanzas">Mudanzas</option>
   <option value="mecanicos">Mecánicos</option>
   <option value="electricos">Electricos</option>

@@ -33,7 +33,7 @@ export default function CardProfile({ user, history }) {
         </Flex>
         <Input placeholder="Cambiar imagen" type="file" name="photoUrl" onChange={context.uploadPhoto} />
         <Button
-          onClick={() => go('/profile/config')}
+          //onClick={() => go('/profile/config')}
           size="lg"
           color="white"
           variantColor="hotpurple"

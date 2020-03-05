@@ -15,7 +15,7 @@ function Form({ width, children, title, submit, bgColor }) {
         </Heading>
         {children}
         <Button
-          backgroundColor="hotpurple.100"
+          backgroundColor="navyblue.100"
           variantColor="hotpurple"
           type="submit"
         >

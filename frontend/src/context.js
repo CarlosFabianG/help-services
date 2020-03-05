@@ -40,6 +40,7 @@ class MyProvider extends Component {
       sortBy: ''
     },
     businesses: [],
+    myBusinesses:[],
     loggedUser: null,
     isLogged: false
   }
@@ -71,7 +72,25 @@ class MyProvider extends Component {
 //async componentDidMount(){
  // this.Yelpsearch()
  //   }
+
+
+ componentDidMount = async () => {
+  let { businesses } = await AUTH_SERVICE.getAllMyBusiness()
+  this.setState(prevstate => ({
+    ...prevstate,
+    myBusinesses: businesses
+  }))
+}
   
+
+getMyBusinesses =  async () => {
+  let { businesses } = await AUTH_SERVICE.getAllMyBusiness()
+  this.setState(prevstate => ({
+    ...prevstate,
+    myBusinesses: businesses
+  }))
+}
+
  uploadPhoto = e => {
    const formPhoto = new FormData()
    formPhoto.append('photoUrl', e.target.files[0])
@@ -220,7 +239,8 @@ handleSearchEvent = (e, obj) => {
       handleSearchBarInputs,
       uploadPhoto,
       handleCreateBusiness,
-      handleCreateBusinessSubmit
+      handleCreateBusinessSubmit,
+      getMyBusinesses
     } = this
     return (
       <MyContext.Provider
@@ -238,8 +258,8 @@ handleSearchEvent = (e, obj) => {
           handleSearchBarInputs,
           uploadPhoto,
           handleCreateBusiness,
-          handleCreateBusinessSubmit
-
+          handleCreateBusinessSubmit,
+          getMyBusinesses
         }}
       >
         {this.props.children}

@@ -61,6 +61,7 @@ function Navbar({ history }) {
                     </Flex>
                     <MenuItem onClick={() => go('/')}>Home</MenuItem>
                     <MenuItem onClick={() => go('/profile')}>Profile</MenuItem>
+                    <MenuItem onClick={() => go('/profile/myBusiness')}>Registros</MenuItem>
                     <MenuItem onClick={context.handleLogout}>Logout</MenuItem>
                   </>
                 )}

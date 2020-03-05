@@ -1,71 +1,134 @@
-import React, {Component} from 'react'
-import { render } from 'react-dom'
-import BusinessCard from '../../components/BusinessCard'
+import React, { useEffect, useContext } from 'react'
+import AUTH_SERVICE from '../../services/auth'
+import { MyContext } from '../../context'
+//import { render } from 'react-dom'
+//import BusinessCard from '../../components/BusinessCard'
 import {
-    Badge,
-    Image,
-    Box
+  Stack,
+  Heading,
+  Box,
+  Flex,
+  Image,
+  Badge,
+  SimpleGrid
   } from '@chakra-ui/core'
   
 
 
 // Sample card from Airbnb
 
-function MyBusiness() {
-  const property = {
-    imageUrl: "https://bit.ly/2Z4KKcF",
-    imageAlt: "Rear view of modern home with pool",
-    beds: 3,
-    baths: 2,
-    title: "Modern home in city center in the heart of historic Los Angeles",
-    formattedPrice: "$1,900.00",
-    reviewCount: 34,
-    rating: 4,
-  };
+function MyBusiness ({history}) {
+  const context = useContext(MyContext)
+ 
+  useEffect(() => {
+    if (!context.state.isLogged) return history.push('/login')
+    context.getMyBusinesses()
+  })
 
-  return (
-    <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
-      <Image src={property.imageUrl} alt={property.imageAlt} />
+  
 
-      <Box p="6">
-        <Box d="flex" alignItems="baseline">
-          <Badge rounded="full" px="2" variantColor="teal">
-            New
-          </Badge>
-          <Box
-            color="gray.500"
-            fontWeight="semibold"
-            letterSpacing="wide"
-            fontSize="xs"
-            textTransform="uppercase"
-            ml="2"
-          >
-            {property.beds} beds &bull; {property.baths} baths
-          </Box>
-        </Box>
+   return (
+    <MyContext.Consumer>
+    {context => {
+      return (
+      <React.Fragment>
 
-        <Box
-          mt="1"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          isTruncated
+        <Stack
+          mt="15vh"
+          ml="5vw"
+          mr="5vw"
+          backgroundColor="white"
+          textAlign="center"
+          w="90vw"
+          minH="90vh"
         >
-          {property.title}
-        </Box>
 
-        <Box>
-          {property.formattedPrice}
-          <Box as="span" color="gray.600" fontSize="sm">
-            / wk
-          </Box>
-        </Box>
+        <Heading mb={1} size="sm">Mis registros</Heading>
 
-      
-        </Box>
-      </Box>
+        <Flex>
+
+          <SimpleGrid
+            columns={[1, 2, 3]}
+            spacing={10}
+            ml="5vw"
+            mr="5vw"
+          >
+            {context.state.businesses.map(business => 
+              business.category === "plumbing" && (
+
+            <Box 
+              key={business._id} 
+              maxW="sm" 
+              borderWidth="1px" 
+              rounded="lg" 
+              overflow="hidden" 
+              mt="5vh"
+              mr="5vw" 
+              mb="5vh"
+              ml="5vw"
+            >
+
+              <Image src={business.imageURL} alt={business.name} />
+
+              <Box p="6" >
+
+                <Box d="flex" alignItems="baseline">
+
+                  <Badge rounded="full" px="2" variantColor="teal">
+                    New
+                  </Badge>
+
+                  <Box
+                    color="gray.500"
+                    fontWeight="semibold"
+                    letterSpacing="wide"
+                    fontSize="xs"
+                    textTransform="uppercase"
+                    ml="2"
+                  >
+                    Hola
+                  </Box>
+
+                </Box>
+
+                <Box
+                    mt="1"
+                    fontWeight="semibold"
+                    as="h4"
+                    lineHeight="tight"
+                    isTruncated
+                  >
+                    Hola
+                  </Box>
+
+                <Box
+                    mt="1"
+                    as="h5"
+                    lineHeight="tight"
+                    isTruncated
+                  >
+                    {business.address}
+                </Box>
+
+                <Box>
+                  {business.phone}
+                  <Box as="span" color="gray.600" fontSize="sm">
+                     / M.N. mensual.
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+            ))}
+          </SimpleGrid>
+        </Flex>
+      </Stack>
+    </React.Fragment>
+    )
+  }}
+  </MyContext.Consumer>
+)
    
-  );
+
 }
 
 export default MyBusiness

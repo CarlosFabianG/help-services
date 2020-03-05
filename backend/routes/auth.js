@@ -98,7 +98,7 @@ router.post('/profile/create', isAuth, uploadCloud.single('imageURL'),async (req
 //   return res.status(201).json({ user, business: businessPopulated })
 // })
 //Read Routes/auths linea 76
-router.get('/businesses', async (req, res, next) => {
+router.get('/profile/myBusiness', async (req, res, next) => {
   const businesses = await Business.find()
     .sort({ createdAt: -1 })
   res.status(200).json({ businesses })
