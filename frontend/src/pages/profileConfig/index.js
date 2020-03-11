@@ -18,7 +18,7 @@ export default function ProfileConfig({ history }) {
   return (
     <MyContext.Consumer>
       {context => {
-        //const { isLogged } = context.state
+        
         const { isLogged, loggedUser } = context.state
         if (isLogged)
           return (

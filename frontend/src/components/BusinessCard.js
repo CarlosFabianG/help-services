@@ -6,8 +6,6 @@ import { Box, Image, Badge, Icon} from "@chakra-ui/core";
 
 
 function BusinessCard ({ business }) {
-  //const context = useContext(MyContext)
-  //const { business } = context.state
 
     return(
       

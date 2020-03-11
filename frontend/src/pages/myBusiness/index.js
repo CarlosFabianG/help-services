@@ -1,7 +1,5 @@
 import React, { useEffect, useContext } from 'react'
 import { MyContext } from '../../context'
-//import { render } from 'react-dom'
-//import BusinessCard from '../../components/BusinessCard'
 import {
   Stack,
   Heading,
@@ -12,10 +10,6 @@ import {
   SimpleGrid
   } from '@chakra-ui/core'
   
-
-
-
-
 function MyBusiness ({history}) {
   const context = useContext(MyContext)
  

@@ -4,8 +4,7 @@ import { Stack, Input, Button, Flex, Select } from "@chakra-ui/core";
 
 
 function SearchBar(){
-//Se estan usando hooks si no funciona cambiare el component a clase
-//y usaré componentDidMount method    
+  
     const context = useContext(MyContext)
     
     

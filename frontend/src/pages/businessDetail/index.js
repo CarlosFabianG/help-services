@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-//import { MyContext } from '../../context'
 import axios from 'axios'
-//import BusinessCard from '../../components/BusinessCard'
 import { Box, Image, Badge, Stack, Flex } from "@chakra-ui/core"
 const api_key = 'DrcSCtjf4UWodf1lxDoID7v21R3ElIbbXhIpBG2iCxXjgIpi-ujG4J7gwrNjeQNYwizW0VRhlSD9YgHb1uacJd7m1JHE2uZpc6nR-l6IeJqMBKPvRs3g69XgVfPOXXYx'
 
@@ -20,9 +18,6 @@ class BusinessDetail extends Component{
             this.setState({businessdetail:{...data}})
             const {dataReviews} = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}/reviews`,{headers:{Authorization:`Bearer ${api_key}`}})
             this.setState({reviews:{...dataReviews}})
-            console.log(data)
-            console.log(dataReviews)
-            console.log(this.state.businessdetail.location.display_address)
         }
     
         render(){

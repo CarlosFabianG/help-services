@@ -2,14 +2,11 @@ import React, { useContext } from 'react'
 import { MyContext } from '../../context'
 import SearchBar from '../../components/SearchBar'
 import BusinessList from '../../components/BusinessList'
-
 import {
   Stack,
   Heading
 } from '@chakra-ui/core'
 
-
-//import { MyContext } from '../../context'
 function Home({ history }) {
   const context = useContext(MyContext)
   const { businesses } = context.state
