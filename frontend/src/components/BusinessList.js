@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { MyContext } from '../context'
 import BusinessCard from './BusinessCard'
 import {
-  SimpleGrid,
-  Link
+  SimpleGrid
 } from '@chakra-ui/core'
 
 
@@ -17,7 +17,7 @@ return(
       {console.log('bus', context)
       }
       {context.state.business && context.state.business.businesses ? (
-        context.state.business.businesses.map((business,index) => < Link   key={index} href={`/${business.id}`}><BusinessCard key={business.id} address1={business.location.address1} image={business.image_url} business={business}/></Link>)
+        context.state.business.businesses.map((business,index) => < Link   key={index} to={`/${business.id}`}><BusinessCard key={business.id} address1={business.location.address1} image={business.image_url} business={business}/></Link>)
 
       ):(null)}
       </>
