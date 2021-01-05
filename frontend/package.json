@@ -6,7 +6,7 @@
     "@chakra-ui/core": "^0.6.0",
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cloudinary": "^1.19.0",
     "emotion-theming": "^10.0.27",
     "multer": "^1.4.2",
